@@ -1,0 +1,103 @@
+﻿<%@ Master Language="VB" AutoEventWireup="false" CodeFile="Site.master.vb" Inherits="Site" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head id="Head1" runat="server">
+    <title></title>
+    <link href="~/Styles/Site.css" rel="stylesheet" type="text/css" />
+    <asp:ContentPlaceHolder ID="HeadContent" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body>
+    <form id="Form1" runat="server">
+        <div class="page">
+            <div class="header">
+                <div class="title">
+                    <h1>Online House Renting System
+                        
+                        <asp:LoginView ID="LoginView2" runat="server">
+                            <RoleGroups>
+                                <asp:RoleGroup Roles="admin">
+                                    <ContentTemplate>
+                                        - Administration Panel
+                                    </ContentTemplate>
+                                </asp:RoleGroup>
+                            </RoleGroups>
+                        </asp:LoginView>
+                    </h1>
+                </div>
+                <div class="loginDisplay">
+                    <asp:LoginView ID="HeadLoginView" runat="server" EnableViewState="false">
+                        <AnonymousTemplate>
+                            [ <a href="~/Account/Login.aspx" id="HeadLoginStatus" runat="server">Log In</a> ]
+                        </AnonymousTemplate>
+                        <LoggedInTemplate>
+                            Welcome <span class="bold">
+                                <asp:LoginName ID="HeadLoginName" runat="server" />
+                            </span>!
+                        [
+                            <asp:LoginStatus ID="HeadLoginStatus" runat="server" LogoutAction="Redirect" LogoutText="Log Out" LogoutPageUrl="~/" />
+                            ]
+                        </LoggedInTemplate>
+                    </asp:LoginView>
+                </div>
+                <div class="clear hideSkiplink">
+                    <asp:LoginView ID="LoginView1" runat="server">
+                        <RoleGroups>
+                            <asp:RoleGroup Roles="admin">
+                                <ContentTemplate>
+                                    <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                                        <Items>
+                                            <asp:MenuItem NavigateUrl="~/Admin/Default.aspx" Text="Home" />
+                                            <asp:MenuItem NavigateUrl="~/Admin/ManageStates.aspx" Text="Manage States" />
+                                            <asp:MenuItem NavigateUrl="~/Admin/ManageCities.aspx" Text="Manage Cities" />
+                                            <asp:MenuItem NavigateUrl="~/Admin/ManageLocality.aspx" Text="Manage Locality" />
+                                            <asp:MenuItem NavigateUrl="~/Admin/ManageAmenities.aspx" Text="Manage Amenities" />
+                                            <asp:MenuItem NavigateUrl="~/Admin/ManageFacilities.aspx" Text="Nearby Facilities" />
+                                            <asp:MenuItem NavigateUrl="~/Admin/ManageResidenceTypes.aspx" Text="Residence Types" />
+                                            <asp:MenuItem NavigateUrl="~/Admin/ManageAds.aspx" Text="Manage Ads" />
+                                            <asp:MenuItem NavigateUrl="~/Admin/ManageUsers.aspx" Text="Manange Users" />
+                                            <asp:MenuItem NavigateUrl="~/Account/ChangePassword.aspx" Text="Change Password" />
+                                        </Items>
+                                    </asp:Menu>
+                                </ContentTemplate>
+                            </asp:RoleGroup>
+                            <asp:RoleGroup Roles="user">
+                                <ContentTemplate>
+                                    <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                                        <Items>
+                                            <asp:MenuItem NavigateUrl="~/User/Default.aspx" Text="Home" />
+                                            <asp:MenuItem NavigateUrl="~/User/PostAdvertisement.aspx" Text="Post Advertisement" />
+                                            <asp:MenuItem NavigateUrl="~/User/MyAdvertisements.aspx" Text="My Ads" />
+                                            <asp:MenuItem NavigateUrl="~/User/PostRequirement.aspx" Text="Post Requirement" />
+                                            <asp:MenuItem NavigateUrl="~/User/MyRequirements.aspx" Text="My Requirements" />
+                                            <asp:MenuItem NavigateUrl="~/Account/ChangePassword.aspx" Text="Change Password" />
+                                        </Items>
+                                    </asp:Menu>
+                                </ContentTemplate>
+                            </asp:RoleGroup>
+                        </RoleGroups>
+                        <AnonymousTemplate>
+                            <asp:Menu ID="NavigationMenu" runat="server" CssClass="menu" EnableViewState="false" IncludeStyleBlock="false" Orientation="Horizontal">
+                                <Items>
+                                    <asp:MenuItem NavigateUrl="~/Default.aspx" Text="Home" />
+                                    <asp:MenuItem NavigateUrl="~/ViewAdvertisements.aspx" Text="View Advertisements" />
+                                    <asp:MenuItem NavigateUrl="~/Account/Register.aspx" Text="Register" />
+                                </Items>
+                            </asp:Menu>
+                        </AnonymousTemplate>
+                    </asp:LoginView>
+                </div>
+            </div>
+            <div class="main">
+                <asp:ContentPlaceHolder ID="MainContent" runat="server" />
+            </div>
+            <div class="clear">
+            </div>
+        </div>
+        <div class="footer">
+            2014 &copy; Online House Renting System
+        </div>
+    </form>
+</body>
+</html>
